@@ -12,11 +12,11 @@ public class GamePanel extends JPanel implements Runnable {
     public final int originalSize = 10;
     public final int scale = 3;
 
-    public final int titleSize = originalSize * scale; // 48 * 48
+    public final int titleSize = originalSize * scale; // 30 * 30
     public final int maxScreenCol = 25;
     public final int maxScreenRow = 20;
-    public final int screenWidth = titleSize * maxScreenCol;
-    public final int screenHeight = titleSize * maxScreenRow;
+    public final int screenWidth = titleSize * maxScreenCol; // 750
+    public final int screenHeight = titleSize * maxScreenRow; //
 
     // INJECTION
     TileManager tileM = new TileManager(this);
@@ -24,8 +24,9 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
 
     // SET PLAYER
-    int playerX = 100;
-    int playerY = 100;
+    int playerX = (maxScreenCol / 2) * titleSize ;
+    int playerY = (maxScreenRow / 2) * titleSize;
+
     int playerStep = titleSize;
 
     // FPS
