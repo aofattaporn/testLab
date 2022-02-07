@@ -13,9 +13,9 @@ import java.util.Objects;
 public class TileManager {
 
     // INJECTION
-    GamePanel gp;
-    Tile[] tile;
-    int mapTileNum[][];
+    public GamePanel gp;
+    public Tile[] tile;
+    public int mapTileNum[][];
 
     // method provide tile
     public TileManager(GamePanel gp) {
@@ -25,7 +25,7 @@ public class TileManager {
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImages();
-        loadMap("../res/worldmap.txt");
+        loadMap("../res/maps/worldmap2.txt");
 
     }
 
@@ -39,6 +39,9 @@ public class TileManager {
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/board2.png")));
 
+            tile[2] = new Tile();
+            tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/bomb.png")));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,7 +53,6 @@ public class TileManager {
         // draw mini map
         // miniMap(g2);
         miniMapByFile(g2);
-
 
     }
 
@@ -95,7 +97,7 @@ public class TileManager {
             int screenX = worldX - gp.player.worldX + gp.player.screenX;
             int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
-            //
+            // if
             if (worldX + gp.titleSize > gp.player.worldX - gp.player.screenX &&
                     worldX - gp.titleSize < gp.player.worldX + gp.player.screenX &&
                     worldY + gp.titleSize > gp.player.worldY - gp.player.screenY &&
