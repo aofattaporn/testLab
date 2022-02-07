@@ -1,11 +1,12 @@
 package main;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Main {
 
     public static void main(String[] args) {
-
+//        WriteToFile.writeFile();
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
@@ -17,7 +18,7 @@ public class Main {
         window.pack();
 
         window.setLocationRelativeTo(null);
-        window.setVisible(true);
+        window.setVisible(gamePanel.state);
 
         gamePanel.startGameThread();
 

@@ -2,6 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import tile.TileManager;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,28 +15,21 @@ public class Player extends Entity {
     // DECLARE VARIABLE
     public final int screenX;
     public final int screenY;
-    public int count;
+
     // INJECTION
     GamePanel gp;
     KeyHandler keyH;
+    TileManager tileM;
 
     // Constructor
-    public Player(GamePanel gp, KeyHandler keyH) {
+    public Player(GamePanel gp, KeyHandler keyH, TileManager tileM) {
 
+        this.tileM = tileM;
         this.gp = gp;
         this.keyH = keyH;
-        this.count = 0;
 
         screenX = ((gp.maxScreenCol - 1) / 2) * gp.titleSize;
         screenY = (gp.screenHeight) / 2;
-
-        // collocation
-        soidArea = new Rectangle(0, 0, gp.titleSize, gp.titleSize);
-        soidArea.x = 8;
-        soidArea.y = 16;
-        soidArea.width = 14;
-        soidArea.height = 14;
-
 
         setDefaultValues();
         getPlayerImage();
@@ -108,10 +102,6 @@ public class Player extends Entity {
             }
         }
 
-        // collision
-        collisionOn = false;
-        gp.cChecker.checkTile(this);
-
     }
 
     // method draw
@@ -132,14 +122,23 @@ public class Player extends Entity {
             case "right":
                 image = right;
                 break;
+        }
+
+        // check bomb
+        int i = 0;
+
+        if (worldX / 30 == 48 && worldY / 30 == 35 || worldX / 30 == 60 && worldY / 30 == 33) {
+            gp.state = false;
+
+        } else {
+            g2.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
 
         }
 
-
-        // draw image
-        g2.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
-
     }
+
+    ;
+
 
     public int getWorldX() {
         return worldX;

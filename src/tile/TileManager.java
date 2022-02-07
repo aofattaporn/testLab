@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class TileManager {
@@ -15,14 +17,19 @@ public class TileManager {
     // INJECTION
     public GamePanel gp;
     public Tile[] tile;
-    public int mapTileNum[][];
+    public int[][] mapTileNum;
+    public int[] bombX;
+    public int[] bombY;
+    public ArrayList<Bomb> bomb = new ArrayList<>();
 
     // method provide tile
     public TileManager(GamePanel gp) {
-        this.gp = gp;
 
+        this.gp = gp;
         tile = new Tile[10];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+        bombX = new int[100];
+        bombY = new int[100];
 
         getTileImages();
         loadMap("../res/maps/worldmap2.txt");
@@ -85,30 +92,30 @@ public class TileManager {
 
         int worldCol = 0;
         int worldRow = 0;
+        int count = 0;
 
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
 
             // DECLARE VARIABLE
             int tileNum = mapTileNum[worldCol][worldRow];
 
-            int worldX = worldCol * gp.titleSize;
-            int worldY = worldRow * gp.titleSize;
+            int worldX = worldCol * gp.titleSize; // 100 * 30
+            int worldY = worldRow * gp.titleSize; //  80 * 30
 
             int screenX = worldX - gp.player.worldX + gp.player.screenX;
             int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
-            // if
             if (worldX + gp.titleSize > gp.player.worldX - gp.player.screenX &&
                     worldX - gp.titleSize < gp.player.worldX + gp.player.screenX &&
                     worldY + gp.titleSize > gp.player.worldY - gp.player.screenY &&
                     worldY - gp.titleSize < gp.player.worldY + gp.player.screenY) {
+
 
                 g2.drawImage(tile[tileNum].image, screenX, screenY, gp.titleSize, gp.titleSize, null);
 
             }
 
             worldCol++;
-
 
             if (worldCol == gp.maxWorldCol) {
                 worldCol = 0;
@@ -149,6 +156,7 @@ public class TileManager {
                 }
             }
             bufferedReader.close();
+
         } catch (Exception e) {
         }
     }

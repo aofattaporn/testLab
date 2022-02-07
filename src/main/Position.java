@@ -1,26 +1,48 @@
 package main;
 
+import entity.Player;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+
 public class Position {
+
+    GamePanel gp;
+    Graphics2D g2;
+    Player player;
 
     int positionX;
     int positionY;
 
+    public Position(GamePanel gp, Player player) {
+        this.gp = gp;
+        this.player = player;
+    }
+
     public void update(int positionX, int positionY){
         this.positionX = positionX / 30;
         this.positionY = positionY / 30;
-
-//        System.out.println("x : " + positionX + "y : "+ positionY);
-
     }
 
 
     public void draw(Graphics2D g2){
 
-        // draw image
-        g2.drawString("x : " + positionX + "y :" + positionY, 30, 30);
+        // SET BACKGROUND
+        g2.setColor(Color.PINK);
+        g2.fillRect(gp.titleSize * (gp.maxScreenCol - 5), 0, gp.titleSize * 5, gp.titleSize * 2);
+
+        // FONT POSITION
+        g2.setColor(Color.white);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        Font font = new Font("Kanit", Font.PLAIN, 24);
+        g2.setFont(font);
+
+        // DRAW POSITION
+        g2.drawString("x: " + (player.getWorldX() / 30 +1) + " Y :" + (player.getWorldY() /30 + 1),
+                gp.titleSize * (gp.maxScreenCol - 4) - 15,
+                40);
+
 
     }
 
