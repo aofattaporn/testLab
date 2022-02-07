@@ -13,6 +13,7 @@ public class TileManager {
     GamePanel gp;
     Tile[] tile;
 
+    // method provide tile
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
@@ -34,6 +35,7 @@ public class TileManager {
         }
     }
 
+    // method draw board
     public void draw(Graphics2D g2){
 
         int col = 0;
@@ -43,7 +45,7 @@ public class TileManager {
 
         while (col < gp.maxScreenCol && row < gp.maxScreenRow){
 
-            g2.drawImage(tile[0].image, x, y, gp.titleSize, gp.titleSize, null);
+            g2.drawImage(tile[0].image, x , y, gp.titleSize, gp.titleSize, null);
             col++;
             x += gp.titleSize;
 
@@ -57,4 +59,5 @@ public class TileManager {
         }
 
     }
+
 }

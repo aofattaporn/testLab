@@ -1,5 +1,7 @@
 package main;
 
+//import entity.Player;
+import entity.Player;
 import tile.Tile;
 import tile.TileManager;
 
@@ -22,12 +24,8 @@ public class GamePanel extends JPanel implements Runnable {
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
+    Player player = new Player(this, keyH);
 
-    // SET PLAYER
-    int playerX = (maxScreenCol / 2) * titleSize ;
-    int playerY = (maxScreenRow / 2) * titleSize;
-
-    int playerStep = titleSize;
 
     // FPS
     int FPS = 18;
@@ -40,7 +38,6 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-
 
     }
 
@@ -85,15 +82,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        if (keyH.upPressed) {
-            playerY -= playerStep;
-        } else if (keyH.downPressed) {
-            playerY += playerStep;
-        } else if (keyH.leftPressed) {
-            playerX -= playerStep;
-        } else if (keyH.rightPressed) {
-            playerX += playerStep;
-        }
+
+        player.update();
+
     }
 
     public void paintComponent(Graphics g) {
@@ -101,12 +92,13 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
 
+
         // draw tile
         tileM.draw(g2);
 
         // character
-        g.setColor(Color.PINK);
-        g.fillRect(playerX, playerY, titleSize, titleSize);
+        player.draw(g2);
+
 
         g.dispose();
 
