@@ -15,11 +15,20 @@ public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
 
+    // DECLARE VARIABLE
+    public final int screenX;
+    public final int screenY;
+
+
+
     // Constructor
     public Player(GamePanel gp, KeyHandler keyH){
 
         this.gp = gp;
         this.keyH = keyH;
+
+        screenX = ((gp.maxScreenCol - 1) / 2) *  gp.titleSize ;
+        screenY = (gp.screenHeight) / 2;
 
         setDefaultValues();
         getPlayerImage();
@@ -30,8 +39,9 @@ public class Player extends Entity{
     public void setDefaultValues(){
 
         // SET PLAYER
-        playerX = (gp.maxScreenCol / 2) * gp.titleSize;
-        playerY = (gp.maxScreenRow / 2) * gp.titleSize;
+        worldX = gp.titleSize * 50;
+        worldY = gp.titleSize * 40;
+
         playerStep = 30;
         direction = "normal";
 
@@ -50,16 +60,16 @@ public class Player extends Entity{
     public void update(){
         if (keyH.upPressed) {
             direction = "normal";
-            playerY -= playerStep;
+            worldY -= playerStep;
         } else if (keyH.downPressed) {
             direction = "normal";
-            playerY += playerStep;
+            worldY += playerStep;
         } else if (keyH.leftPressed) {
             direction = "normal";
-            playerX -= playerStep;
+            worldX -= playerStep;
         } else if (keyH.rightPressed) {
             direction = "normal";
-            playerX += playerStep;
+            worldX += playerStep;
         }
 
     }
@@ -74,7 +84,7 @@ public class Player extends Entity{
         }
 
         // draw image
-        g2.drawImage(image, playerX, playerY, gp.titleSize, gp.titleSize, null);
+        g2.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
 
     }
 
