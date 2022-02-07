@@ -108,7 +108,6 @@ public class GamePanel extends JPanel implements Runnable {
         if (state == false){
            this.setVisible(false);
 
-
             JFrame window2 = new JFrame();
             window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             window2.setResizable(false);
@@ -120,7 +119,6 @@ public class GamePanel extends JPanel implements Runnable {
             window2.setFocusable(true);
 
             window2.setLocationRelativeTo(null);
-            window2.setVisible(true);
 
             gameThread.stop();
 
