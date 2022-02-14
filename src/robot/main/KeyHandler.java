@@ -1,4 +1,4 @@
-package main;
+package robot.main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

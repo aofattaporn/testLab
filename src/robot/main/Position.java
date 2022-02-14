@@ -1,15 +1,13 @@
-package main;
+package robot.main;
 
-import entity.Player;
+import robot.player.Player;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 
 public class Position {
 
     GamePanel gp;
-    Graphics2D g2;
     Player player;
 
     int positionX;
@@ -20,13 +18,13 @@ public class Position {
         this.player = player;
     }
 
-    public void update(int positionX, int positionY){
+    public void update(int positionX, int positionY) {
         this.positionX = positionX / 30;
         this.positionY = positionY / 30;
     }
 
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2) {
 
         // SET BACKGROUND
         g2.setColor(Color.PINK);
@@ -39,7 +37,7 @@ public class Position {
         g2.setFont(font);
 
         // DRAW POSITION
-        g2.drawString("x: " + (player.getWorldX() / 30 +1) + " Y :" + (player.getWorldY() /30 + 1),
+        g2.drawString("x: " + (player.getWorldX() / 30 + 1) + " Y :" + (player.getWorldY() / 30 + 1),
                 gp.titleSize * (gp.maxScreenCol - 4) - 15,
                 40);
 

@@ -1,4 +1,4 @@
-package tile;
+package robot.tile;
 
 public class Bomb {
 

@@ -1,6 +1,6 @@
-package tile;
+package robot.tile;
 
-import main.GamePanel;
+import robot.main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class TileManager {
@@ -22,7 +21,7 @@ public class TileManager {
     public int[] bombY;
     public ArrayList<Bomb> bomb = new ArrayList<>();
 
-    // method provide tile
+    // method provide robot.tile
     public TileManager(GamePanel gp) {
 
         this.gp = gp;
@@ -32,7 +31,7 @@ public class TileManager {
         bombY = new int[100];
 
         getTileImages();
-        loadMap("../res/maps/worldmap2.txt");
+        loadMap("../robot.res/maps/worldmap2.txt");
 
     }
 
@@ -41,13 +40,13 @@ public class TileManager {
         try {
 
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/board.png")));
+            tile[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../robot.res/board.png")));
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/board2.png")));
+            tile[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../robot.res/board2.png")));
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/bomb.png")));
+            tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../robot.res/bomb.png")));
 
         } catch (IOException e) {
             e.printStackTrace();

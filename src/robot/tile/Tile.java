@@ -1,4 +1,4 @@
-package tile;
+package robot.tile;
 
 import java.awt.image.BufferedImage;
 

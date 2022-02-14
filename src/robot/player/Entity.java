@@ -1,7 +1,4 @@
-package entity;
-
-import main.GamePanel;
-import main.KeyHandler;
+package robot.player;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

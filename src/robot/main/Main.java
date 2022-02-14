@@ -1,7 +1,6 @@
-package main;
+package robot.main;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
 

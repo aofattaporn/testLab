@@ -1,8 +1,8 @@
-package entity;
+package robot.player;
 
-import main.GamePanel;
-import main.KeyHandler;
-import tile.TileManager;
+import robot.main.GamePanel;
+import robot.main.KeyHandler;
+import robot.tile.TileManager;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

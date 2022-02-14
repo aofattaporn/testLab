@@ -1,14 +1,12 @@
-package main;
+package robot.main;
 
 //import entity.Player;
 
-import entity.Player;
-import tile.TileManager;
+import robot.player.Player;
+import robot.tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
-import java.util.Random;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -36,7 +34,6 @@ public class GamePanel extends JPanel implements Runnable {
     public KeyHandler keyH = new KeyHandler();
     public Player player = new Player(this, keyH, tileM);
     public Thread gameThread;
-    public Bomb bomb = new Bomb(tileM, this);
     public Position position = new Position(this, player);
 
 
@@ -98,31 +95,10 @@ public class GamePanel extends JPanel implements Runnable {
 
         player.update();
 
-        newWindow(state);
+        closeWindow(state);
 
         position.update(player.getWorldX(), player.getWorldY());
 
-    }
-
-    public void newWindow(boolean state){
-        if (state == false){
-           this.setVisible(false);
-
-            JFrame window2 = new JFrame();
-            window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            window2.setResizable(false);
-            window2.setTitle("GAME ROBOT2");
-
-            window2.setPreferredSize(new Dimension(5000, 6000));
-            this.setDoubleBuffered(true);
-            window2.setBackground(Color.BLACK);
-            window2.setFocusable(true);
-
-            window2.setLocationRelativeTo(null);
-
-            gameThread.stop();
-
-        }
     }
 
     public void paintComponent(Graphics g) {
@@ -130,7 +106,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        // draw tile
+        // draw robot.tile
         tileM.draw(g2);
 
         // character
@@ -142,6 +118,20 @@ public class GamePanel extends JPanel implements Runnable {
 
         g.dispose();
 
+    }
+
+    public void closeWindow(boolean state){
+        if (!state){
+
+            JFrame window2 = new JFrame();
+            window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            window2.setResizable(false);
+            window2.setTitle("GAME ROBOT2");
+
+            System.exit(1);
+            gameThread.stop();
+
+        }
     }
 
 }
